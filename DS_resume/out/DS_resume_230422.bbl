@@ -1,0 +1,96 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{9784339033656}{book}{}
+      \name{author}{3}{}{%
+        {{hash=30704a9271b2bf155ea1354c8422e7a1}{%
+           family={小畑秀文},
+           familyi={小\bibinitperiod}}}%
+        {{hash=fb2764f1835db7985a11f370dffea66d}{%
+           family={浜田望},
+           familyi={浜\bibinitperiod}}}%
+        {{hash=0e591e8d26362fc4a8d4c09ec12e55ad}{%
+           family={田村安孝},
+           familyi={田\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {コロナ社}%
+      }
+      \strng{namehash}{d938c42d89573bb6593becca05fd42a8}
+      \strng{fullhash}{d938c42d89573bb6593becca05fd42a8}
+      \strng{bibnamehash}{d938c42d89573bb6593becca05fd42a8}
+      \strng{authorbibnamehash}{d938c42d89573bb6593becca05fd42a8}
+      \strng{authornamehash}{d938c42d89573bb6593becca05fd42a8}
+      \strng{authorfullhash}{d938c42d89573bb6593becca05fd42a8}
+      \field{sortinit}{小}
+      \field{sortinithash}{4e618867564d5b98fe6e6ca1a999d5c5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{信号処理入門}
+      \field{year}{2007}
+      \true{nocite}
+    \endentry
+    \entry{liner-sys}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=0e591e8d26362fc4a8d4c09ec12e55ad}{%
+           family={田村安孝},
+           familyi={田\bibinitperiod}}}%
+      }
+      \strng{namehash}{0e591e8d26362fc4a8d4c09ec12e55ad}
+      \strng{fullhash}{0e591e8d26362fc4a8d4c09ec12e55ad}
+      \strng{bibnamehash}{0e591e8d26362fc4a8d4c09ec12e55ad}
+      \strng{authorbibnamehash}{0e591e8d26362fc4a8d4c09ec12e55ad}
+      \strng{authornamehash}{0e591e8d26362fc4a8d4c09ec12e55ad}
+      \strng{authorfullhash}{0e591e8d26362fc4a8d4c09ec12e55ad}
+      \field{sortinit}{田}
+      \field{sortinithash}{7b36f5378c2a1e3d12e8ad660fe3f49b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{http://tamlab.web.fc2.com/Ls.html}}
+      \field{title}{線形システム基礎 講義資料}
+      \field{year}{2018}
+      \true{nocite}
+    \endentry
+    \entry{wakatuki}{unpublished}{}
+      \name{author}{1}{}{%
+        {{hash=397b11cc2af01f4c350873acd93115ce}{%
+           family={若槻尚斗},
+           familyi={若\bibinitperiod}}}%
+      }
+      \strng{namehash}{397b11cc2af01f4c350873acd93115ce}
+      \strng{fullhash}{397b11cc2af01f4c350873acd93115ce}
+      \strng{bibnamehash}{397b11cc2af01f4c350873acd93115ce}
+      \strng{authorbibnamehash}{397b11cc2af01f4c350873acd93115ce}
+      \strng{authornamehash}{397b11cc2af01f4c350873acd93115ce}
+      \strng{authorfullhash}{397b11cc2af01f4c350873acd93115ce}
+      \field{sortinit}{若}
+      \field{sortinithash}{a45999d484d8926a578a1a2f6eed73dd}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{\empty}
+      \field{title}{ディジタル信号処理 講義資料}
+      \field{year}{2023}
+      \true{nocite}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

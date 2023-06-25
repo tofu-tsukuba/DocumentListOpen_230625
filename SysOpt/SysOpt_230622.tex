@@ -1,0 +1,239 @@
+\documentclass[twocolumn]{ltjsarticle}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{multicol}
+\usepackage{amsfonts}
+
+\renewcommand{\figurename}{Fig.}
+\renewcommand{\tablename}{Table.}
+
+\newcommand{\st}{
+    \mathrm{s.t.}\;\;
+}
+
+\newcommand{\subans}[2]{
+    \begin{vmatrix}
+        \mathrm{#1}\\
+        \mathrm{#2}
+    \end{vmatrix}
+}
+
+\title{システム最適化 レジュメ}
+\author{tofu.}
+
+\begin{document}
+\maketitle
+\section{最適化問題の記述}
+\subparagraph{局所的最適解}
+$\widetilde{x}$に対して、
+\begin{align*}
+    f(\widetilde{x})&\leq f(x)\\
+    \st \ \forall x&\in B(\widetilde{x};r)\\
+    &=\left\{x\in\mathbb{R}|\;||x-\widetilde{x}||<r\right\}
+\end{align*}
+ただし、$B(\widetilde{x};r)$を$\widetilde{x}$の開近傍という。
+\section{正準形と標準形}
+\subparagraph{正準形}
+正準形では、
+\begin{itemize}
+    \item 目的関数がminとなる
+    \item 制約条件が$\leq$または$=$で表される
+\end{itemize}
+ようにする。
+ただし、すべての$x_j$に正負の制約があるわけではない。
+
+そこで
+正負の制約のない$x_j$に対しては
+\begin{align*}
+    x_j&=x_j^{+}-x_j^{-}\ \ (x_j^{+},x_j^{-}\geq0)
+\end{align*}
+と置き換えて、正負の制約条件を追加する。
+\begin{multicols}{2}
+    \subparagraph{不等式標準形}
+    \begin{align*}
+        &\sum_{j=1}^{n} c_jx_j \rightarrow \mathrm{min}\\
+        \st &\sum_{j=1}^{n}g_{ij}x_j\leq \alpha_i\\
+        &\sum_{j=1}^{n}h_{kj}x_j= \beta_k\\
+        &x_j\geq 0
+    \end{align*}
+    \subparagraph{等式標準形}
+    \begin{align*}
+        &\sum_{j=1}^{n} c_jx_j \rightarrow \mathrm{min}\\
+        \st &\sum_{j=1}^{n}g_{ij}x_j+z_i= \alpha_i\\
+        &\sum_{j=1}^{n}h_{kj}x_j= \beta_k\\
+        &x_j,z_i\geq 0
+    \end{align*}
+\end{multicols}
+ただし、$z_i$をスラック変数という。
+
+\subparagraph{正準形\rightarrow 不等式 \rightarrow 等式}
+\leavevmode\\
+min / (\ $\leq$ or $=$\ ) \rightarrow \ $\forall x_j>0$
+\rightarrow スラック変数
+
+\section{Simplex Tableau}
+\noindent Table.\ref{Table_SimplexTableau}で、
+$z$の係数が非負になるように、正規化と行基本変形を
+繰り返し、最適解を求める方法。
+\begin{table}[ht]
+    \centering
+    \caption{Simplex Tableau}\label{Table_SimplexTableau}
+    \begin{tabular}{c|c|c|c|c|c}
+         & $x_1$ & $x_2$ & $x_3$ & $x_4$ &  \\\hline
+    $-z$   &      &      &      &    &   \\
+    $x_3$ &      &      &      &     &   \\
+    $x_4$ &      &      &      &     &   \\\hline
+    \end{tabular}
+\end{table}
+
+\section{2段階法}
+制約条件の不等号が$\geq$の場合、スラック変数の他に、
+人口変数を用いる。たとえば、
+\begin{align*}
+    z&=4x_1+5x_2\rightarrow \mathrm{min}\\
+    \st&4x_1+3x_2-x_3+x_5=16\\
+    &2x_1+7x_2-x_4+x_6=24
+\end{align*}
+について、スラック変数は$x_3,x_4$、人工変数は$x_5,x_6$となる。
+2段階法では、Simplex TableauをTable.\ref{Table_SimplexTableauTwo}のように書く。
+\begin{table}[ht]
+    \centering
+    \caption{Simplex Tableau}\label{Table_SimplexTableauTwo}
+    \begin{tabular}{c|c|c|c|c|c}
+         & $x_1$ & $x_2$ & $x_3$ & $x_4$ & \\\hline
+    $\omega$ & -(4+2) & -(3+7)  & 1 & 1 & -(16+24) \\
+    $-z$   &   4   &   5   &   0   &   0   &  0\\\hline
+    $x_3$ &   4   &   3   &   -1   &   1   & 16\\
+    $x_4$ &   2   &    7  &    -1  &  1   & 24 \\\hline
+    \end{tabular}
+\end{table}
+\section{双対性}
+\begin{multicols}{2}
+    \subsection{主問題 P}
+    \begin{align*}
+        z&=C^Tx\rightarrow\mathrm{min}\\
+        \st&Ax=b\;,x\geq0
+    \end{align*}
+    \subsection{双対問題 D}
+    \begin{align*}
+        \omega&=y^Tb\rightarrow\mathrm{max}\\
+        \st&y^TA\leq C^T 
+    \end{align*}
+\end{multicols}
+
+\begin{multicols}{2}
+    \subsection{生産計画問題 P}
+    \begin{center}
+        \noindent ある原料$x$について、\\
+        個数$b$以下(制約)で、\\
+        利益$z$を最大化する。
+    \end{center}
+    \begin{align*}
+        z&=C^Tx\rightarrow\mathrm{max}\\
+        \st &Ax\leq b\\
+        & x\geq 0
+    \end{align*}
+    \subsection{栄養問題 D}
+    \begin{center}
+            \noindent 価格が$y$の餌について、\\
+            栄養$C$以上(制約)で、\\
+            経費$\omega$を最小化する。
+    \end{center}
+    \begin{align*}
+        \omega &=y^Tb\rightarrow\mathrm{min}\\
+        \st &y^TA\geq C^T\\
+        &y\geq 0
+    \end{align*}
+\end{multicols}
+
+\section{凸}
+\subparagraph{凸集合}
+\begin{align*}
+    \forall x,y\in S,\lambda\in[0,1]\\
+    \forall \lambda x+(1-\lambda)y\in S
+\end{align*}
+となるとき、$S$を凸集合という。
+\subparagraph{2次形式と凸}
+\begin{align*}
+    &Q\;\mathrm{が\subans{非負}{正}定値}\\
+    \Leftrightarrow\; &Q\;\mathrm{の固有値がすべて\subans{非負}{正}}\\
+    \Leftrightarrow\; &f(x)\mathrm{が\subans{広義凸}{狭義凸}}
+\end{align*}
+\subparagraph{3次以上への対処}
+凸関数+凸関数として対処する。
+
+\section{制約の有無}
+\noindent
+\subsection{制約がない}
+$\nabla f(x)=0$をみたす$x$が局所最適解
+\subsection{制約がある}
+\subsubsection{ラグランジュの乗数定理}
+\rightarrow 制約条件が等式\\
+$\overline{x}$が最適解なら、
+ある$\lambda=\overline{\lambda}$が存在し、
+\begin{align*}
+    L(x,\lambda)&=f(x)+\sum_{j=1}^{\ell}\lambda_jh_j(x)\\
+    \left. \frac{\partial L}{\partial x_k} \right|_{
+        \begin{matrix}
+            x=\overline{x}\\
+            \lambda=\overline{\lambda}
+        \end{matrix}
+        }
+    &=0\ \ (k=1,\cdots,n)\\\\
+    h_j(\overline{x})&=0\ \ (j=1,\cdots,\ell)
+\end{align*}
+を満たす。これは、$\lambda_j=0$のとき、制約条件なしと同じである。
+\subsubsection{クーン・タッカーの定理}\rightarrow 制約条件が不等式
+\begin{align*}
+    L(x,\lambda)&=f(x)+\sum_{i=1}^{\ell}\lambda_ig_i(x)\\
+    \left. \frac{\partial L}{\partial x_k} \right|_{
+        \begin{matrix}
+            x=\overline{x}\\
+            \lambda=\overline{\lambda}
+        \end{matrix}
+        }
+    &=0\ \ (k=1,\cdots,n)\\\\
+    g_i(\overline{x})&\leq0,\ \overline{\lambda_i}\geq0,\ 
+    \overline{\lambda_i}g_i(\overline{x})=0\ \ \\
+    &(i=1,\cdots,\ell)
+\end{align*}
+この最後の制約条件を使って境界部分に最適解があると考える手法である。
+\subsubsection{ヘッセ行列}\rightarrow 微分可能な関数
+\subparagraph{最適解}
+$\nabla f(\overline{x})=0$\ \rightarrow \ $\overline{x}\in X$の確認
+\\制約なしで考えているのと同じ。
+\subparagraph{凸性}
+ヘッセ行列が非負定値
+
+\section{近似解法}
+\subparagraph{ニュートン法}
+$f(x)=0$の近似を求めることで有名な解法
+\begin{align*}
+    y&=f'(x_k)(x-x_k)+f(x_k)\\
+\end{align*}
+について、$y=0,x=x_{k+1}$とする。
+\begin{align*}
+    x_{k+1}=x_k-\frac{f(x_k)}{f'(x_k)}
+\end{align*}
+\subparagraph{区間縮小法}
+$x_1<x_2\in[a,b]$\\
+①$f(x_1)\leq f(x_2)$のとき
+\begin{align*}
+    &\rightarrow \overline{x}\in[a,x_2]\\
+    &b\leftarrow x_2,\ \ x_2\leftarrow x_1
+\end{align*}
+②$f(x_1)\geq f(x_2)$のとき
+\begin{align*}
+    &\rightarrow \overline{x}\in[x_1,b]\\
+    &a\leftarrow x_1,\ \ x_1\leftarrow x_2
+\end{align*}
+
+\section{【補足】行列の定値性}
+\begin{itemize}
+    \item $\forall \lambda  > 0$ (正値)⇔ A は正定値行列
+    \item $\forall \lambda  \geq 0$(非負値) ⇔ 行列 A は半正定値行列
+    \item $\forall \lambda < 0$(負値) ⇔ 行列 A は負定値行列
+    \item $\forall \lambda \leq 0$(非正値) ⇔ 行列 A は半負定値行列
+\end{itemize}
+
+\end{document}
