@@ -3,19 +3,23 @@
 \usepackage{amssymb}
 \usepackage{multicol}
 \usepackage{amsfonts}
+\usepackage{tcolorbox}
 
 \renewcommand{\figurename}{Fig.}
 \renewcommand{\tablename}{Table.}
 
 \newcommand{\st}{
     \mathrm{s.t.}\;\;
-}
-
-\newcommand{\subans}[2]{
+}\newcommand{\subans}[2]{
     \begin{vmatrix}
         \mathrm{#1}\\
         \mathrm{#2}
     \end{vmatrix}
+}\newcommand{\visible}{visible}   
+\newcommand{\ans}[1]{
+    \begin{tcolorbox}[\visible]
+        \textcolor{magenta}{#1}
+    \end{tcolorbox}
 }
 
 \title{システム最適化 レジュメ}
@@ -23,6 +27,7 @@
 
 \begin{document}
 \maketitle
+\tcbset{colframe=white, colback=white, invisible}
 \section{最適化問題の記述}
 \subparagraph{局所的最適解}
 $\widetilde{x}$に対して、
@@ -87,7 +92,8 @@ $z$の係数が非負になるように、正規化と行基本変形を
 \end{table}
 
 \section{2段階法}
-制約条件の不等号が$\geq$の場合、スラック変数の他に、
+制約条件の不等号が$\geq$の場合(自明解が存在しないとき)、
+スラック変数の他に、
 人口変数を用いる。たとえば、
 \begin{align*}
     z&=4x_1+5x_2\rightarrow \mathrm{min}\\
@@ -101,10 +107,10 @@ $z$の係数が非負になるように、正規化と行基本変形を
     \caption{Simplex Tableau}\label{Table_SimplexTableauTwo}
     \begin{tabular}{c|c|c|c|c|c}
          & $x_1$ & $x_2$ & $x_3$ & $x_4$ & \\\hline
-    $\omega$ & -(4+2) & -(3+7)  & 1 & 1 & -(16+24) \\
+    $\omega$ & -(4+2) & -(3+7)  & -(-1+0) & -(-1+0) & -(16+24) \\
     $-z$   &   4   &   5   &   0   &   0   &  0\\\hline
-    $x_3$ &   4   &   3   &   -1   &   1   & 16\\
-    $x_4$ &   2   &    7  &    -1  &  1   & 24 \\\hline
+    $x_3$ &   4   &   3   &   -1   &   0   & 16\\
+    $x_4$ &   2   &    7  &    0  &  -1   & 24 \\\hline
     \end{tabular}
 \end{table}
 \section{双対性}
@@ -235,5 +241,13 @@ $x_1<x_2\in[a,b]$\\
     \item $\forall \lambda < 0$(負値) ⇔ 行列 A は負定値行列
     \item $\forall \lambda \leq 0$(非正値) ⇔ 行列 A は半負定値行列
 \end{itemize}
+
+\section{補足問題}
+\subsection{双対性の理解}
+主問題と双対問題、生産計画問題と栄養問題書き出し、
+生産計画問題が栄養問題と双対性をもつことを示せ。
+\ans{
+    教科書定理2.3の証明参照
+}
 
 \end{document}
